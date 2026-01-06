@@ -30,9 +30,9 @@ At the end of the course, students will be capable of analyzing data using linea
 
 #### Assessments
 
-- 4 Homework Assignments **(50%)**
-- 1 Midterm Exam **(20%)**
-- 1 (Course Project) **(30%)**
+- 4 Homework Assignments **(49%)**
+- 1 Midterm Exam **(19%)**
+- 1 (Course Project) **(29%)**
 - Professionalism **(3%)**
   
 ##### Homework Assignments
@@ -77,19 +77,19 @@ A-F Grading Scale:
 *(Tentative)*
   
 1. JAN 06 Course introduction, Review of Pre-requisite material
-2. JAN 13 Intro/Review of Linear Regression; **Homework 1** Assigned
-3. JAN 20 Multiple Linear Regression (MLR): Model Assumptions, Theoretical Properties
-4. JAN 27 MLR: Interaction terms; **Homework 2 Assigned**
-5. FEB 03 MLR: Model Design, Variable Selection
-6. FEB 10 MLR: Application, Interpretation of model results, Summary plots; **Homework 3 Assigned**
+2. JAN 13 Introduction to ANOVA; **Homework 1** Assigned
+3. JAN 20 Two-way ANOVA
+4. JAN 27 Connecting ANOVA and Linear Regression; **Homework 2 Assigned**
+5. FEB 03 Intro/Review of Linear Regression
+6. FEB 10 Multiple Linear Regression (MLR): Model Assumptions, Theoretical Properties; **Homework 3 Assigned**
 7. FEB 17 **MIDTERM**
-8. FEB 24 Introduction to ANOVA
-9. MAR 03 Two-way ANOVA
+8. FEB 24 MLR: Interaction terms
+9. MAR 03 MLR: Application, Interpretation of model results, Summary plots
 *(Spring Pause MAR 6-7)*
-10. MAR 10 Connecting ANOVA and Linear Regression.
-11. MAR 17 Models for heteroskedastic data; **Homework 4 Assigned**
-12. MAR 24 Case studies and applications
-13. MAR 31 Experimental Design
+10. MAR 10 MLR: Model Design, Variable Selection
+11. MAR 17 Case study and application; **Homework 4 Assigned**
+12. MAR 24 Experimental Design
+13. MAR 31 Models for heteroskedastic data
 *(Spring Break APR 7-11)*
 14. APR 14 Mixed Effects Models
 15. APR 21 Discuss course project.
@@ -157,4 +157,5 @@ Students are responsible for reading the full AU Academic Honesty policy which c
   DISCLAIMER 
     
   This syllabus is subject to change at the discretion of the course instructor.  Students will be informed in advance of any changes that may impact the course schedule or grading policies.
+
   
