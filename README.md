@@ -1,4 +1,4 @@
-## STAT 7630, Spring 2025
+## STAT 7630, Spring 2026
 
 - Time: 1130-1245 TR
 - Room: EC 2231
@@ -159,3 +159,4 @@ Students are responsible for reading the full AU Academic Honesty policy which c
   This syllabus is subject to change at the discretion of the course instructor.  Students will be informed in advance of any changes that may impact the course schedule or grading policies.
 
   
+
