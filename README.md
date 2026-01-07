@@ -2,8 +2,8 @@
 
 - Time: 1130-1245 TR
 - Room: EC 2231
-- Textbook: A Modern Approach to Regression with R, Simon Sheather, Springer, [https://link.springer.com/book/10.1007/978-0-387-09608-7]
-- Supplementary Materials: [https://gattonweb.uky.edu/sheather/book/]
+- Textbook: Applied Linear Regression, Sanford Weisberg, Fourth Ed. [https://www.stat.purdue.edu/~qfsong/teaching/525/book/Weisberg-Applied-Linear-Regression-Wiley.pdf]
+- Supplementary Materials: Mathematical Statistics and Data Analysis, John Rice, Third Ed.
 - Credits: 3
 
 - Instructor: Dustin Pluta, PhD
@@ -159,4 +159,5 @@ Students are responsible for reading the full AU Academic Honesty policy which c
   This syllabus is subject to change at the discretion of the course instructor.  Students will be informed in advance of any changes that may impact the course schedule or grading policies.
 
   
+
 
