@@ -1,0 +1,22 @@
+---
+title: "Homework 2"
+author: "D. Pluta"
+date: 'Due: 2026-02-03'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problems
+
+1. Weisberg: 2.1.1, 2.1.2, 2.1.3
+2. Weisberg: 2.4.1, 2.4.2, 2.4.3
+3. Weisberg: 2.12
+4. Suppose we are working with the model $Y_i = \beta x_i + \varepsilon_i, \varepsilon_i \overset{iid}\sim N(0, \sigma^2)$. 
+    a. What is the MLE of $\beta$ for this model?
+    b. What is the interpretation of $\beta_1$?
+    c. Why might this model be problematic for many types of data?
+    d. Describe how to transform the response $Y_i$ so that the model is appropriate in general.
+5. Explain why $\hat\beta_0$ and $\hat\beta_1$ in the simple linear regression model are normally distributed.
