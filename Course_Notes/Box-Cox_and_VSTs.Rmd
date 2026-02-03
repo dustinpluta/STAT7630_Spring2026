@@ -1,0 +1,182 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Box--Cox vs Variance-Stabilizing Transformations
+
+---
+
+## Motivation
+
+Linear regression assumes:
+
+- Linearity in the mean  
+- Constant variance  
+- Approximately normal errors  
+
+Transformations are commonly used when these assumptions fail.
+
+Two broad approaches:
+
+- Variance-stabilizing transformations (VSTs)
+- Box--Cox transformations
+
+---
+
+## Variance-Stabilizing Transformations (VSTs)
+
+A variance-stabilizing transformation is derived from an assumed
+mean--variance relationship:
+
+$$
+\mathrm{Var}(Y \mid \mu) = g(\mu)
+$$
+
+Choose a transformation $h(Y)$ such that:
+
+$$
+\mathrm{Var}(h(Y)) \approx \text{constant}
+$$
+
+Key idea:
+- Grounded in probability theory
+- Tied to the data-generating distribution
+
+---
+
+## Common Variance-Stabilizing Transformations
+
+| Distribution | Typical transformation |
+|-------------|------------------------|
+| Poisson (counts) | $\sqrt{Y}$ |
+| Binomial (proportions) | $\arcsin(\sqrt{Y})$ |
+| Gamma / multiplicative errors | $\log(Y)$ |
+| Normal | identity |
+
+---
+
+## When to Use a VST
+
+Use a variance-stabilizing transformation when:
+
+- The data-generating distribution is known or well motivated
+- Variance clearly depends on the mean
+- Interpretation is linked to the scientific process
+
+Examples:
+- Event counts
+- Rates and intensities
+- Proportions
+
+In many cases, a GLM is preferable to transforming the response.
+
+---
+
+## Box--Cox Transformation
+
+The Box--Cox family is:
+
+$$
+Y^{(\lambda)} =
+\begin{cases}
+\dfrac{Y^{\lambda} - 1}{\lambda}, & \lambda \neq 0 \\
+\log(Y), & \lambda = 0
+\end{cases}
+$$
+
+Properties:
+
+- Requires strictly positive responses
+- $\lambda$ is estimated from the data
+- Chosen by maximizing the Gaussian likelihood
+
+---
+
+## What Box--Cox Tries to Fix
+
+Box--Cox simultaneously aims to improve:
+
+- Residual normality
+- Constant variance
+- Linearity of the mean function
+
+The transformation is selected to optimize model fit, not theory.
+
+---
+
+## Interpretation of $\lambda$
+
+Common values:
+
+- $\lambda \approx 1$ : no transformation
+- $\lambda \approx 0$ : log transformation
+- $\lambda \approx 0.5$ : square-root--type transformation
+
+Box--Cox often recovers familiar transforms in a data-driven way.
+
+---
+
+## When to Use Box--Cox
+
+Use Box--Cox when:
+
+- The response is continuous and positive
+- There is no strong prior on the distribution
+- Diagnostics are broadly poor:
+  - Skewed residuals
+  - Mild to moderate heteroskedasticity
+  - Curvature in residual plots
+
+Common in exploratory or applied regression settings.
+
+---
+
+## What Box--Cox Is Not Good For
+
+Avoid Box--Cox when:
+
+- The response includes zeros or negatives
+- Data are discrete counts or proportions
+- A GLM is clearly appropriate
+- Interpretation on the original scale is critical
+
+---
+
+## Relationship Between VSTs and Box--Cox
+
+Many classical VSTs are special cases of Box--Cox:
+
+- $\log(Y)$ corresponds to $\lambda = 0$
+- $\sqrt{Y}$ corresponds to $\lambda = 0.5$
+
+Difference in philosophy:
+
+- VSTs: theory-driven (variance structure)
+- Box--Cox: likelihood-driven (model fit)
+
+---
+
+## Practical Decision Rule
+
+1. Counts, proportions, rates:
+   - Use a GLM
+   - VSTs mainly for visualization
+
+2. Continuous, positive response with unclear distribution:
+   - Try Box--Cox
+
+3. If Box--Cox suggests a familiar transform:
+   - Prefer the simpler, interpretable option
+
+---
+
+## Key Takeaway
+
+Variance-stabilizing transformations come from probability theory.
+
+Box--Cox transformations come from likelihood optimization.
+
+Use:
+- VSTs when you trust the distribution
+- Box--Cox when diagnostics matter more than assumptions

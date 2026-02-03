@@ -1,0 +1,159 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# The Box--Cox Transformation
+
+---
+
+## Motivation
+
+Linear regression assumes:
+
+- Linearity in the mean  
+- Constant variance (homoskedasticity)  
+- Approximately normal errors  
+
+When these assumptions fail, we often see:
+
+- Right-skewed residuals  
+- Variance increasing with the mean  
+- Curvature in residual plots  
+
+A common response is to transform the outcome variable.
+
+---
+
+## Why Box--Cox?
+
+Ad hoc transformations (log, square root, reciprocal) are often tried
+by trial and error.
+
+The Box--Cox transformation provides a **systematic, data-driven**
+approach for choosing a transformation.
+
+Key idea:
+- Treat the transformation itself as part of the model.
+
+---
+
+## Definition
+
+The Box--Cox family of transformations is
+
+$$
+Y^{(\lambda)} =
+\begin{cases}
+\dfrac{Y^{\lambda} - 1}{\lambda}, & \lambda \neq 0, \\
+\log(Y), & \lambda = 0
+\end{cases}
+$$
+
+where:
+
+- $Y > 0$ is the response variable  
+- $\lambda \in \mathbb{R}$ is a transformation parameter  
+
+---
+
+## Special Cases
+
+Common values of $\lambda$:
+
+| $\lambda$ | Transformation |
+|----------|----------------|
+| $1$ | No transformation |
+| $0$ | Log transformation |
+| $0.5$ | Square-root transformation |
+| $-1$ | Reciprocal transformation |
+
+The Box--Cox family unifies many familiar transformations.
+
+---
+
+## How $\lambda$ Is Chosen
+
+The transformation parameter $\lambda$ is estimated by:
+
+- Assuming the transformed response follows a normal linear model
+- Maximizing the Gaussian likelihood
+- Profiling out regression coefficients and error variance
+
+The result is a profile likelihood for $\lambda$.
+
+---
+
+## What Box--Cox Tries to Achieve
+
+Box--Cox aims to improve:
+
+- Normality of residuals  
+- Constant variance  
+- Linearity of the mean function  
+
+Rather than fixing one issue, it finds a compromise that best supports
+the linear model assumptions.
+
+---
+
+## Interpretation After Transformation
+
+Important points:
+
+- Regression coefficients are interpreted on the transformed scale
+- Hypothesis tests apply to $Y^{(\lambda)}$
+- Back-transforming fitted values is nontrivial:
+  - Naive back-transformation yields biased estimates of $E(Y \mid X)$
+
+---
+
+## Assumptions and Requirements
+
+Box--Cox requires:
+
+- Strictly positive responses ($Y > 0$)
+- A reasonably continuous outcome
+- A setting where Gaussian regression is plausible
+
+It is not appropriate for:
+
+- Counts or proportions
+- Responses with zeros or negative values
+- Situations where a GLM is clearly appropriate
+
+---
+
+## Box--Cox vs Trial-and-Error
+
+Advantages of Box--Cox:
+
+- The transformation parameter is estimated, not eyeballed
+- Avoids undocumented multiple testing
+- Inference is asymptotically valid
+
+Limitations:
+
+- Small-sample exactness is not guaranteed
+- Interpretation on the original scale is harder
+
+---
+
+## When Box--Cox Is Most Useful
+
+Box--Cox is particularly useful when:
+
+- The response is continuous and positive
+- The distribution is unclear
+- Diagnostics show mild to moderate violations
+- The goal is improved inference, not strict generative modeling
+
+---
+
+## Big Picture Takeaway
+
+The Box--Cox transformation is a likelihood-based method for choosing a
+power transformation of the response.
+
+It provides a principled bridge between exploratory diagnostics and
+formal linear modeling.
