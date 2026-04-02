@@ -132,7 +132,7 @@ plot(dat$x, dat$y,
      xlab = "x", ylab = "y",
      main = "B-spline: good vs poor knots")
 lines(x_grid, f_true(x_grid), lwd = 3)
-lines(x_grid, pred_bs_good, lwd = 2, lty = 2)
+lines(x_grid, pred_bs_good, lwd = 2, lty = 2, col="red")
 lines(x_grid, pred_bs_poor, lwd = 2, lty = 3)
 abline(v = knots_good, lty = 2)
 abline(v = knots_poor, lty = 3)

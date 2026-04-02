@@ -100,16 +100,16 @@ pred_ns6   <- predict(m_ns_6,  newdata = grid_df)
 pred_ns10  <- predict(m_ns_10, newdata = grid_df)
 pred_bs6   <- predict(m_bs_6,  newdata = grid_df)
 
-par(mfrow = c(2, 2))
+par(mfrow = c(1, 1))
 
 plot(dat$x, dat$y,
      pch = 19, cex = 0.5,
      xlab = "x", ylab = "y",
      main = "Linear vs quadratic vs cubic")
-lines(x_grid, f_true(x_grid), lwd = 3)
-lines(x_grid, pred_lin, lwd = 2, lty = 2)
-lines(x_grid, pred_quad, lwd = 2, lty = 3)
-lines(x_grid, pred_cubic, lwd = 2, lty = 4)
+lines(x_grid, f_true(x_grid), lwd = 3, col='red', cex=1.1)
+lines(x_grid, pred_lin, lwd = 4, lty = 2, col='blue')
+lines(x_grid, pred_quad, lwd = 4, lty = 3, col='green')
+lines(x_grid, pred_cubic, lwd = 4, lty = 4, col='purple')
 legend("topright",
        legend = c("True mean", "Linear", "Quadratic", "Cubic"),
        lty = c(1, 2, 3, 4), lwd = c(3, 2, 2, 2), bty = "n", cex = 0.8)
@@ -164,7 +164,7 @@ perf_tab <- data.frame(
 
 perf_tab <- perf_tab[order(perf_tab$test_MSE), ]
 cat("\n--- Model performance summary ---\n")
-print(round(perf_tab, 3), row.names = FALSE)
+print(perf_tab, row.names = FALSE)
 
 cat("\nInterpretation:\n")
 cat("* Compare train MSE and test MSE to assess out-of-sample behavior.\n")
@@ -181,6 +181,7 @@ selected_models <- list(
   ns_df10 = m_ns_10
 )
 
+nm <- names(selected_models[1])
 for (nm in names(selected_models)) {
   fit <- selected_models[[nm]]
   
@@ -232,7 +233,7 @@ plot(dat$x, dat$y,
      xlab = "x", ylab = "y",
      main = "Natural spline fit with pointwise 95% CI")
 lines(x_grid, f_true(x_grid), lwd = 3)
-lines(x_grid, pred_obj$fit, lwd = 2, lty = 2)
+lines(x_grid, pred_obj$fit, lwd = 2, lty = 2, col = "red")
 lines(x_grid, upper, lwd = 1, lty = 3)
 lines(x_grid, lower, lwd = 1, lty = 3)
 legend("topright",
