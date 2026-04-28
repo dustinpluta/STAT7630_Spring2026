@@ -131,7 +131,7 @@ analysis_vars <- c(
   "internet_access", "study_environment",
   "study_hours_per_day", "attendance_rate", "sleep_hours",
   "social_media_hours", "online_courses_completed", "tutoring",
-  "previous_gpa"
+  "previous_gpa", "math_score", "reading_score", "science_score", "writing_score" 
 )
 
 dat_analysis <- dat %>%
@@ -261,13 +261,7 @@ m_academic <- glm(
   pass_fail ~
     study_hours_per_day +
     attendance_rate +
-    assignment_completion_rate +
-    participation_score +
     tutoring +
-    math_score +
-    reading_score +
-    writing_score +
-    science_score +
     previous_gpa,
   data = train,
   family = binomial
@@ -286,20 +280,15 @@ m_full <- glm(
     attendance_rate +
     sleep_hours +
     social_media_hours +
-    assignment_completion_rate +
-    participation_score +
     online_courses_completed +
     tutoring +
-    math_score +
-    reading_score +
-    writing_score +
-    science_score +
     previous_gpa,
   data = train,
   family = binomial
 )
 
-## Model 3: sensitivity model excluding online_courses_completed
+## Model 3: sensitivity model excluding online_courses_completed 
+#           and subject scores
 m_no_online <- glm(
   pass_fail ~
     gender +
@@ -312,13 +301,7 @@ m_no_online <- glm(
     attendance_rate +
     sleep_hours +
     social_media_hours +
-    assignment_completion_rate +
-    participation_score +
     tutoring +
-    math_score +
-    reading_score +
-    writing_score +
-    science_score +
     previous_gpa,
   data = train,
   family = binomial
@@ -338,14 +321,8 @@ m_spline <- glm(
     ns(attendance_rate, df = 3) +
     ns(sleep_hours, df = 3) +
     ns(social_media_hours, df = 3) +
-    assignment_completion_rate +
-    participation_score +
     online_courses_completed +
     tutoring +
-    math_score +
-    reading_score +
-    writing_score +
-    science_score +
     previous_gpa,
   data = train,
   family = binomial
@@ -357,6 +334,29 @@ print(summary(m_full))
 print(summary(m_no_online))
 print(summary(m_spline))
 
+# Degenerate Model including subject scores
+m_degenerate <- glm(
+  pass_fail ~
+    gender +
+    age +
+    parental_education +
+    family_income +
+    internet_access +
+    study_environment +
+    study_hours_per_day +
+    attendance_rate +
+    sleep_hours +
+    social_media_hours +
+    tutoring +
+    math_score +
+    reading_score +
+    writing_score +
+    science_score +
+    previous_gpa,
+  data = train,
+  family = binomial
+)
+summary(m_degenerate)
 ## ------------------------------------------------------------
 ## 7. Odds ratios and confidence intervals
 ## ------------------------------------------------------------
@@ -471,8 +471,8 @@ print(perf)
 ## For teaching, we choose the full model unless spline clearly improves
 ## predictive performance and calibration.
 
-final_model <- m_full
-final_model_name <- "Full logistic regression"
+final_model <- m_no_online
+final_model_name <- "Final Model logistic regression (no online courses completion included)"
 
 cat("\n--- Final model chosen for detailed diagnostics ---\n")
 cat(final_model_name, "\n")
@@ -713,11 +713,6 @@ plot_continuous_effect <- function(model, data, var_name, n_grid = 100) {
 }
 
 key_continuous <- c(
-  "study_hours_per_day",
-  "attendance_rate",
-  "assignment_completion_rate",
-  "participation_score",
-  "previous_gpa",
   "social_media_hours"
 )
 
@@ -780,14 +775,8 @@ x_train <- model.matrix(
     attendance_rate +
     sleep_hours +
     social_media_hours +
-    assignment_completion_rate +
-    participation_score +
     online_courses_completed +
     tutoring +
-    math_score +
-    reading_score +
-    writing_score +
-    science_score +
     previous_gpa,
   data = train
 )[, -1]
@@ -806,14 +795,8 @@ x_test <- model.matrix(
     attendance_rate +
     sleep_hours +
     social_media_hours +
-    assignment_completion_rate +
-    participation_score +
     online_courses_completed +
     tutoring +
-    math_score +
-    reading_score +
-    writing_score +
-    science_score +
     previous_gpa,
   data = test
 )[, -1]
@@ -915,7 +898,7 @@ cat("============================================================\n")
 
 cat("\n1. Domain-informed exclusion decisions:\n")
 cat("\n   student_id was excluded because it is an identifier.")
-cat("\n   grade_category and final_exam_score were excluded because they are likely")
+cat("\n   grade_category, subject scores, participation score, and final_exam_score were excluded because they are likely")
 cat("\n   downstream summaries or direct components of pass/fail status, creating")
 cat("\n   potential data leakage.\n")
 
